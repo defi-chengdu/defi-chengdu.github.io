@@ -1,0 +1,549 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<!-- cover -->
+				<section data-background="imgs/cover.png">
+					<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.2); color:black; padding: 20px; font-size: 20px; text-align: left;">
+						<p>在灰色框里的这些讲义内容，是根据现场讲的内容来的。</p>
+						<p>如果那天，你也在那里，你看到的 slides 上没有这些框。</p>
+						<p>有的 slides 可能会变形，你可能需要 16：9 的屏幕（比如手机的横屏）</p>
+					</div>
+				</section>
+
+			 	<!-- preface : Defi  -->
+				<section>
+					<section data-background="imgs/defi.png">
+						<div style="position: absolute; width: 40%; right: 0; background-color: rgba(0, 0, 0, 0.2); color:white; padding: 20px; font-size: 20px; text-align: left;">
+							<p>我没有提到什么是 Defi，我说： “一开始没有人称 MakerDao 为 defi，直到有一天，出现了 Defi 这个词，人们突然觉得，
+								啊哈，这个词很不错，它就是我们想要的！”</p>
+								<p>因为接下来我们要介绍很多 Defi 产品，在此之前，我先来
+									谈谈一些不是 Defi 的东西吧。  
+								</p>
+								<p><b>请向下翻页</b></p>
+						</div>
+					</section> 
+					<section data-background="imgs/tether.jpg">	
+						<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>Tether ERC20 版本，这 5 个帐号中的 3 个同意，就可以任意发行。
+									不透明。 另外，托管在银行的钱，如果被政府冻结，也是另一个风险。
+									我们失去了对资产的控制权。
+								</p>
+								<p><b>请向下翻页</b></p>
+							</div>
+					</section> 
+					<section data-background="imgs/binance.jpg">	
+						<div style="position: absolute; width: 40%; right: 0; background-color: rgba(0, 0, 0, 0.2); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>交易所的交易都是真的吗？（透明吗？） 
+									你的资产都在交易所的钱包里，被黑客攻击了呢？ 
+								</p>
+									<p><b>请向下翻页</b></p>
+							</div>
+					</section> 
+					<section data-background="imgs/a-share.png">
+						<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>你有 50 万吗？ 
+									传统金融领域，存在很多准入门槛。
+								</p>
+								<p><b>请向下翻页</b></p>
+							</div>
+					</section> 
+					<section data-background="imgs/bond.jpg">
+						<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p> 有些债券，收益其实很好。
+									但可能，你都未能听过他们。
+									更别说能够购买到了。
+									无准入许可，是 defi 的一个特点。
+								</p>
+								<p><b>请向右翻页</b></p>
+							</div>
+					</section> 
+				</section>
+
+				<!-- ### -->
+				<!-- ### -->
+				<!-- Chapter 1: dai v1  -->
+				<section data-background="#30BD9F">
+						<h2>Chapter 1 <br> Dai v1 </h2>
+				</section>
+				<!-- A set of smart contracts  -->
+				<section>
+						<section data-background="#30BD9F">
+									<h3> Dai 稳定币系统是 “一套智能合约” </h3>
+									<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+											<p> 关于智能合约，我想多说两句。
+											</p>
+											<p><b>请向下翻页</b></p>
+									</div>
+						</section>
+						<section data-background="imgs/smart-contract-1.png">
+							<div style="position: absolute; width: 45%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 10px; font-size: 20px; text-align: left; " >
+								<p>你或许听过，写进了区块链的东西无法被修改。
+									你可能还听过，矿工在博弈之下，会选择遵守规则。
+									这里的 “规则” 也包括按照之前写到区块链上的程序去执行。
+								</p>	
+								<p>写进了区块链的程序</p>
+									<p>运行在每个矿工的机器里</p>
+									<p><b>请向下翻页</b></p>
+							</div>	
+						</section> 
+						<section data-background="imgs/smart-contract-2.png">
+							<div style="position: absolute; width: 35%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px; font-size: 20px; text-align: left; " >
+								<p>只是写到了区块链上，这个程序并不就是可信的。
+									它必须要是开源的，你能够拿着源代码，看到里面干了什么。
+									并且能够验证，源代码和区块链里的程序是对应的。
+								</p>
+								<p><b>请向下翻页</b></p>
+							</div>	
+						</section> 
+						<section data-background="imgs/smart-contract-3.png">
+							<div style="position: absolute; width: 35%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px; font-size: 20px; text-align: left;" >
+								<p>逐利的矿工，其实是..... </p>
+								<p><b>请向下翻页</b></p>
+							</div>	
+						</section> 
+						<section data-background="imgs/smart-contract-4.png">
+							<div style="position: absolute; width: 35%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px; font-size: 20px; text-align: left;" >
+								<p>“监管者”</p> 
+								<p>可能比现实世界的 “监管者” 还要给力。</p>
+								<p><b>请向右翻页</b></p>
+							</div>	
+						</section> 
+				</section>
+				<!-- Dai Head in  -->
+				<section>
+						<section data-background="#30BD9F">
+								<h3> Dai 稳定币的 “智能合约” 里面写了什么？ </h3>
+								<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+										<p><b>请向下翻页</b></p>
+								</div>
+						</section>
+						<section data-background="imgs/dai-head-in-1.png">
+							<div style="position: absolute; width: 60%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px; font-size: 20px; text-align: left;" >
+								<p>任何人都可以发行稳定币Dai</p>
+								<p>Dai稳定币系统将会尽可能保证：</p> 
+								<p>1 Dai = $1 </p>
+							</div>	
+						</section> 
+						<section data-background="imgs/dai-head-in-2.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>任何都可以发行 Dai，但这不意味着你可以空手套白狼。
+									你发行的每一枚 Dai，都至少要有价值 1.5 美元的以太币背书。
+								</p>	
+								<p><b>请向下翻页</b></p>
+							</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-4.png">	
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>如果以太币价格一直上涨，比如，这位朋友抵押的以太币价值了 2 美元了，
+										那么，我们没有什么担心的。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-5.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>但如果以太币价格下跌了，就惨了，比如这位朋友
+										抵押的以太币如果只值 1.4 美元了，我们要坚守的底线就不成立了。
+									</p>	
+									<p>我们得想办法做点什么，但在此之前，我们介绍一个叫做抵押比的概念。</p>
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-6.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 发行的 Dai 的价格 除以 抵押的以太币的价格，就是抵押比
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-7.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 我们坚守的东西，你可以换句话说：
+										“我们要求抵押比不能低于 150%”
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-9.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 我们要做点什么。
+									</p>	
+									<p>虽然这位朋友只发行了 1Dai，但是我们却没收了它价值 1.13 美元的以太币。</p>
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-10.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 这价值 1.13 美元的以太币，会拿到市场上甩卖，
+										打 97 折
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-11.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 套利者会受到诱惑而来，1.13 美元打折大概是 1.1 美元。 
+										我们这位套利者只支付了 1.1 Dai，就获得了价值 1.13 美元的以太币。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-12.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 得到这 1.1 个 Dai中的1个，我们会销毁。
+									</p>	
+									<p> 这里要说一下，因为 Dai 和 我们的纸币很类似，是 fungible token，
+										我们搞了这么多事情，其实是因为我们这位朋友手里的 Dai 有问题，
+										这枚 Dai 背后没有价值 1.5 美元的资产背书了，我们想要销毁它。
+										但现在，我们却从市场上收回来另一枚 Dai，这枚 Dai 和那位朋友手里的
+										没有什么差别的。所以，销毁收回来的这枚，可以认为等价销毁了这位朋友手里的 Dai. 
+									</p>
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+						<section data-background="imgs/dai-head-in-13.png">
+						</section> 
+						<section data-background="imgs/dai-head-in-14.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 我们坚守的东西，又来了。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+
+						<!-- Short intro On Peth  -->
+						<section data-background="imgs/peth-1.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 多出的 0.1 Dai 去了哪里呢？
+										啊哈，我们没有讨论，以太币暴跌的时候。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 	
+						<section data-background="imgs/peth-2.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 假如这位朋友的抵押的只值 0.9 美元了。 
+										我们依然 97 者甩卖，能够换回 0.873 Dai, 这不够啊。
+										我们要销毁的是 1 个 Dai. 
+
+										emmm... 我们还得甩卖点什么，啊哈！提前屯点以太币吧。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 		
+						<section data-background="imgs/peth-3.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 这就是多出来的 0.1 Dai 的作用
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 		
+						<section data-background="imgs/peth-5.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p> 上面说的是 “原理”，但在实现上，就有点复杂了。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 	
+						<section data-background="imgs/peth-4.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>
+										通过 peth 的通胀通缩，来实现 “提前储备 以太币” 的目的。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 	
+						<section data-background="imgs/peth-6.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>
+										2018年的下跌，在这个下跌的过程中，发生了很多清算，
+										在这个过程中， 囤积了大约 50 万个以太币。 
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 	
+
+
+
+
+						<!-- Dai Stability Fees  -->
+						<section data-background="imgs/dai-head-in-15.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>
+										如果我们这位朋友的 以太币 没有被清算。
+										那么他想赎回来的时候，除了把发行的 Dai 拿来销毁，他还需要支付稳定费。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 
+
+						<!-- Mkr Dao -->
+						<section data-background="imgs/mkr-1.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>
+										手续费他们收了。具体来说，也是通过 MKR 的通缩来实现的。
+										MKR 的持有者，通过投票可以参与治理。
+										但他们能做什么，是智能合约里面提前说好了的。
+										比如，他们能够调节稳定费率。
+									</p>	
+									<p><b>请向下翻页</b></p>
+								</div>
+						</section> 						
+						<section data-background="imgs/mkr-2.png">
+						</section>
+
+
+						<!-- Dai loop -->
+						<section data-background="imgs/dai-head-in-17.png">
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>
+										当前的稳定费率高达 20.5% ，为什么还有人来借呢？ 
+										看多以太币的 Dai Loop.
+									</p>	
+									<p><b>请向右翻页</b></p>
+								</div>
+						</section> 
+						
+
+				</section>
+
+
+				<section  data-background-interactive>
+					<section data-background="#30BD9F">
+						<h3> 让我们来现场 “发行” 一些 Dai  </h3>
+					</section>
+					<section data-background="imgs/dai-in-action-1.png" >	
+						<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>
+									我们刚刚看到的这个保险柜，它有一个专业术语叫做 CDP。
+									一会我们在实际操作的时候，你会看到。
+								</p>	
+								<p><b>请向下翻页</b></p>
+							</div>		
+					</section>
+					<section data-background="imgs/dai-in-action-2.png" >			
+					</section>
+					<section>
+						<h2>Let's Jet.</h2>
+					</section>
+				</section>
+
+
+				<!-- Chapter 2: Buffett's favorite word   -->
+				<section data-background="black">
+					<h2>Chapter 2 <br> 巴菲特最爱的那个单词 </h2>
+				</section>
+				
+				<section>
+					<section data-background="imgs/compound-head-in-1.png">
+					</section>
+					<section data-background="black">
+							<h3> Compound  是 “一套智能合约” </h3>
+					</section>
+					<section data-background="black">
+							<h3> Compound 的 “智能合约” 里面写了什么？ </h3>
+					</section>
+
+					<!-- 1. 首先，这里的利息是浮动的利息，
+					   而且每一种币的 贷款 利息的计算方式都有些不同。 
+					2. 接着，“存 ether” 然后 “借 Dai” 和在 CDP portal
+					   里面操作有什么不同呢？   -->
+					<section data-background="imgs/compound-1.png" >			
+						<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+								<p>
+									Compound 是一个借贷平台。我们在这张图里可以看到， `supply APR` 是存款利息。
+									`Borrow APR` 是年化借款利息。当然，要借款，你需要超额抵押。
+									比如，你想要借一些 Dai，那么你需要超额抵押其他资产，比如抵押以太币。 
+								</p>	
+								<p> 啊哈！ 那么，你在这里抵押以太币借 Dai 和 刚刚在 CDP 里面抵押借贷有什么差别呢？</p>
+								<p> CDP 那边是发行，可以理解为在印钱，这里只是流转，钱流到市场上流通。</p>
+								<p><b>请向下翻页</b></p>
+							</div>
+					</section>
+					
+					<!-- 1. 借出去的 Dai + 剩余的 Dai = 储户的存款 + 储户的利息  -->
+					<section data-background="imgs/compound-2.png" >			
+					</section>
+
+					<section data-background="imgs/compound-3.png" >			
+					</section>
+					<section data-background="imgs/compound-4.png" >			
+					</section>
+					<section data-background="imgs/compound-5.png" >			
+					</section>
+					<section data-background="imgs/compound-7.png" >			
+					</section>
+					<section data-background="imgs/compound-8.png" >			
+					</section>
+					<section data-background="imgs/compound-9.png" >			
+					</section>
+					<section data-background="imgs/compound-10.png" >			
+					</section>
+					<section data-background="imgs/compound-11.png" >			
+					</section>
+					<section data-background="imgs/compound-12.png" >			
+					</section>
+					<section data-background="imgs/compound-13.png" >			
+					</section>
+					<section data-background="imgs/compound-14.png" >			
+					</section>
+					<section>
+						<h2>Let's Jet.</h2>
+					</section>					
+
+				</section>
+
+
+
+				<!-- Chapter 3: The Unicorn   -->
+				<section data-background="#D967E5">
+						<h2>Chapter 3 <br> 独角兽 </h2>
+				</section>
+
+				<!-- head in -->
+				<section>
+						<section data-background="imgs/uniswap-head-in-1.png">
+						</section>
+						<section data-background="#D967E5">
+								<h3> uniswap  是 “一套智能合约” </h3>
+						</section>
+						<section data-background="#D967E5">
+								<h3> uniswap 的 “智能合约” 里面写了什么？ </h3>
+						</section>
+						<section data-background="#D967E5">
+								<h3>一个“数量乘积为常数”的交易所</h3>
+						</section>
+
+						<!-- Trading mechanism  -->
+						<section data-background="#FFFFFF">
+							<h3>智能合约里面有一定数量 eth 和 Dai</h3>
+						</section>
+						<section data-background="#FFFFFF">
+								<h3>我们来看下用 Dai 购买 eth 的价格</h3>
+						</section>
+						<section data-background="imgs/uniswap-1.png" >		
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">	
+								<p>合约里面的 eth 和 dai 的数量的乘积为常数。</p>
+								<p><b>请向下翻页</b></p>
+								</div>	
+						</section>
+						<section data-background="imgs/uniswap-2.png" >			
+						</section>
+						<section data-background="imgs/uniswap-3.png" >			
+						</section>
+						<section data-background="imgs/uniswap-4.png" >			
+						</section>
+
+
+						<!-- 可能亏本的交易，“价格” -->
+						<section data-background="imgs/uniswap-9.png" >	
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>买得越多，越贵，滑点很大....</p>
+									<p><b>请向下翻页</b></p>
+								</div>	
+						</section>						
+
+
+						<!-- Pooling Mechanism -->
+						<section data-background="#FFFFFF">
+							<h3>智能合约里面的 eth 和 Dai 是哪里来的呢？ </h3>
+						</section>
+						<section data-background="imgs/uniswap-5.png" >			
+						</section>
+						<section data-background="imgs/uniswap-6.png" >
+							<div style="position: absolute; width: 100%; left: 10; background-color: rgba(0, 0, 0, 0.7); color:white; padding: 20px; font-size: 20px; text-align: left;">
+									<p>提供流动性的时候，要同时锁 eth 和 dai 到智能合约里面。
+										锁多少呢？ eth 和 dai 的比例与当前 合约里面 eth 和 dai 的比例相同。
+										所以，就在这条蓝色的线上变动了。 
+									</p>
+									<p><b>请向下翻页</b></p>
+								</div>		
+						</section>
+						<section data-background="imgs/uniswap-7.png" >			
+						</section>
+						<section data-background="imgs/uniswap-8.png" >			
+						</section>
+						<section>
+								<h2>Let's Jet.</h2>
+						</section>							
+				</section>
+
+
+				<!-- Chapter 4: The Level  -->	
+				<section>
+					<h2>Chapter 4 <br> 阿基米德 和 地球 </h2>
+				</section>
+
+				<!-- head in  -->
+				<section>
+					<section data-background="imgs/dydx-head-in-1.png">
+					</section>
+					<section data-background="black">
+							<h3> dydx  是 “一套智能合约” </h3>
+					</section>
+					<section data-background="black">
+							<h3> dydx 的 “智能合约” 里面写了什么？ </h3>
+					</section>
+					<section>
+						<h2>Let's Jet.</h2>
+					</section>	
+				</section>
+
+
+				<section>
+						<h2>Last Chapter <br> 握手，握手，握手 </h2>
+				</section>
+
+				<!-- interoperability  -->
+				<section>
+						<h2>互操作性</h2>
+				</section>
+
+
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
